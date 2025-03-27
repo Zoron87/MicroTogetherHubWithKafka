@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topic.CommandService.Api", "MicroTogetherHubWithKafka\Topic.CommandService.Api.csproj", "{36C93D1D-1EB2-4249-B0A4-883812B7ED85}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666} = {0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{EA54E043-9D56-480C-B6CC-270E8D0754CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E52A08C7-F936-4F3C-87D7-0AB74B647FBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Topic.CommandService", "Topic.CommandService", "{91E5448B-9960-4DB1-83C6-3C0894E9D76D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Topic.QueryService", "Topic.QueryService", "{CA69543B-B88E-4768-9050-4E509A449D24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topic.CommandService.Domain", "Topic.CommandService.Domain\Topic.CommandService.Domain.csproj", "{7C4539DB-ACEE-4E55-8831-958441946160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topic.CommandService.Infrastructure", "Topic.CommandService.Infrastructure\Topic.CommandService.Infrastructure.csproj", "{FF21DE65-1885-424B-B603-1E1E593D12B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36C93D1D-1EB2-4249-B0A4-883812B7ED85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C93D1D-1EB2-4249-B0A4-883812B7ED85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C93D1D-1EB2-4249-B0A4-883812B7ED85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C93D1D-1EB2-4249-B0A4-883812B7ED85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C4539DB-ACEE-4E55-8831-958441946160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C4539DB-ACEE-4E55-8831-958441946160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C4539DB-ACEE-4E55-8831-958441946160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C4539DB-ACEE-4E55-8831-958441946160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF21DE65-1885-424B-B603-1E1E593D12B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF21DE65-1885-424B-B603-1E1E593D12B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF21DE65-1885-424B-B603-1E1E593D12B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF21DE65-1885-424B-B603-1E1E593D12B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36C93D1D-1EB2-4249-B0A4-883812B7ED85} = {91E5448B-9960-4DB1-83C6-3C0894E9D76D}
+		{0E2BDC61-810B-4BA8-BAF3-6F3FA4664666} = {EA54E043-9D56-480C-B6CC-270E8D0754CC}
+		{91E5448B-9960-4DB1-83C6-3C0894E9D76D} = {E52A08C7-F936-4F3C-87D7-0AB74B647FBB}
+		{CA69543B-B88E-4768-9050-4E509A449D24} = {E52A08C7-F936-4F3C-87D7-0AB74B647FBB}
+		{7C4539DB-ACEE-4E55-8831-958441946160} = {91E5448B-9960-4DB1-83C6-3C0894E9D76D}
+		{FF21DE65-1885-424B-B603-1E1E593D12B0} = {91E5448B-9960-4DB1-83C6-3C0894E9D76D}
+	EndGlobalSection
+EndGlobal
