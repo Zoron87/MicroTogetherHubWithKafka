@@ -6,7 +6,7 @@ public class UpdateCommentEvent : BaseEvent
     public string Text { get; set; }
     public string AuthorName { get; set; }
     public DateTime UpdateDate { get; set; }
-    public UpdateCommentEvent() :base(nameof(UpdateCommentEvent))
+    public UpdateCommentEvent() : base(nameof(UpdateCommentEvent))
     {
         
     }

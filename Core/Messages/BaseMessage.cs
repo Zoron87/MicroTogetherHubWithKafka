@@ -2,5 +2,5 @@
 
 public abstract class BaseMessage
 {
-    public int MyProperty { get; set; }
+    public Guid MessageId{ get; set; }
 }
