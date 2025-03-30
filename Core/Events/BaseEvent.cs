@@ -1,7 +1,10 @@
-﻿namespace Core.Events;
+﻿using Core.Messages;
 
-public abstract class BaseEvent
+namespace Core.Events;
+
+public abstract class BaseEvent : BaseMessage
 {
+    public Guid EventId { get; set; }
     public string EventType { get; set; }
     public int Version { get; set; }
 

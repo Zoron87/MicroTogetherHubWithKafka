@@ -4,5 +4,5 @@ namespace Topic.CommandService.Api.Topics.Commands.RemoveTopic;
 
 public class RemoveTopicCommand : BaseCommand
 {
-    public string AuthorName { get; set; }
+    public string AuthorName { get; set; } = default!;
 }

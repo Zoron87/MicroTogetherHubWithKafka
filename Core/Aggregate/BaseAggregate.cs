@@ -4,7 +4,7 @@ namespace Core.Aggregate;
 
 public abstract class BaseAggregate
 {
-    public Guid Id { get; protected set; }
+    public Guid AggregateId { get; protected set; }
     public int Version { get; set; } = 0;
 
     private readonly List<BaseEvent> events = new();
