@@ -1,4 +1,5 @@
-﻿using Confluent.Kafka;
+﻿using Carter;
+using Confluent.Kafka;
 using Core.Events.Dao;
 using Core.Handlers;
 using Core.KafkaProducer;
@@ -36,9 +37,16 @@ public static class DependencyInjection
         services.AddScoped<ITopicCommandHandler, TopicCommandHandler>();
         services.Configure<ProducerConfig>(configuration.GetSection("KafkaConfig")); 
         services.AddScoped<IEventKafkaProducer, EventKafkaProducer>(); 
-        services.RegisterCommandHandler(); 
+        services.RegisterCommandHandler();
 
+        services.AddCarter();
         return services;
+    }
+
+    public static WebApplication UseApiServices(this WebApplication app)
+    {
+        app.MapCarter();
+        return app;
     }
 
     private static IServiceCollection RegisterCommandHandler(

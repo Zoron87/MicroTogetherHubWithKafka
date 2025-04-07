@@ -6,6 +6,6 @@ builder.Services.AddCommandService(builder.Configuration);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello Topic.CommandService!");
+app.UseApiServices();
 
 app.Run();
