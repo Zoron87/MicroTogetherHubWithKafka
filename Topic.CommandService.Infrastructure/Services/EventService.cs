@@ -48,8 +48,8 @@ public class EventService(IEventStorage eventStorage, IEventKafkaProducer eventP
             );
 
             await eventStorage.SaveAsync(eventModel, ct);
-            var topic = configuration.GetSection("Kafka:Topic").ToString()!;
+            var topic = configuration["Kafka:Topic"];
             await eventProducer.PublishEventAsync(topic, item);
-    }
+        }
     }
 }
