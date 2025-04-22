@@ -7,6 +7,7 @@ namespace Topic.CommandService.Domain.Aggregates;
 public partial class ContentAggregate
 {
     private readonly Dictionary<Guid, (string text, string authorName)> comments = new();
+
     public void CreateComment(string commentText, string authorName)
     {
         EnsureTopicIsActive();
@@ -14,18 +15,21 @@ public partial class ContentAggregate
 
         RegisterEvent(new CreateCommentEvent
         {
-            EventId = AggregateId,
+            Id = Id,
             CommentId = Guid.NewGuid(),
             Text = commentText,
             AuthorName = authorName,
-            CreateDate = DateTime.UtcNow,
+            CreateDate = DateTime.UtcNow
         });
     }
 
     public void Apply(CreateCommentEvent createCommentEvent)
     {
-        AggregateId = createCommentEvent.EventId;
-        comments.Add(createCommentEvent.CommentId, (createCommentEvent.Text, createCommentEvent.AuthorName));
+        Id = createCommentEvent.Id;
+        comments.Add(
+            createCommentEvent.CommentId,
+            (createCommentEvent.Text, createCommentEvent.AuthorName)
+        );
     }
 
     public void UpdateComment(Guid commentId, string commentText, string authorName)
@@ -36,7 +40,7 @@ public partial class ContentAggregate
 
         RegisterEvent(new UpdateCommentEvent
         {
-            MessageId = AggregateId,
+            Id = Id,
             CommentId = commentId,
             Text = commentText,
             AuthorName = authorName,
@@ -46,9 +50,12 @@ public partial class ContentAggregate
 
     public void Apply(UpdateCommentEvent updateCommentEvent)
     {
-        AggregateId = updateCommentEvent.EventId;
+        Id = updateCommentEvent.Id;
 
-        comments[updateCommentEvent.CommentId] = (updateCommentEvent.Text, comments[updateCommentEvent.CommentId].authorName);
+        comments[updateCommentEvent.CommentId] = (
+            updateCommentEvent.Text,
+            updateCommentEvent.AuthorName
+        );
     }
 
     public void RemoveComment(Guid commentId, string username)
@@ -56,16 +63,16 @@ public partial class ContentAggregate
         EnsureTopicIsActive();
         EnsureCommentBelongsToUser(commentId, username);
 
-        RegisterEvent(new RemoveCommentEvent 
-        { 
-            EventId = AggregateId,
+        RegisterEvent(new RemoveCommentEvent
+        {
+            Id = Id,
             CommentId = commentId
         });
     }
 
     public void Apply(RemoveCommentEvent removeCommentEvent)
     {
-        AggregateId = removeCommentEvent.EventId;
-        Active = false;
+        Id = removeCommentEvent.Id;
+        comments.Remove(removeCommentEvent.CommentId);
     }
 }

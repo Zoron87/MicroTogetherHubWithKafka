@@ -1,7 +1,7 @@
 ﻿using Core.MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Topic.CommandService.Api.Endpoints;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 using Topic.CommandService.Api.Topics.Commands.UpdateTopic;
 
 namespace Topic.CommandService.Api.Topics.Endpoints;
@@ -18,7 +18,7 @@ public class UpdateTopicEndpoint : BaseEndpoint<UpdateTopicCommand>
             ILogger<UpdateTopicEndpoint> logger,
             ICommandDispatcher commandDispatcher) =>
         {
-            command.MessageId = topicId;
+            command.Id = topicId;
             return await ExecuteCommandAsync(command,
                cmd => commandDispatcher.SendCommandAsync(cmd),
                logger);

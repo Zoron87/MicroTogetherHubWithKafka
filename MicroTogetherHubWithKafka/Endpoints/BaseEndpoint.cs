@@ -1,11 +1,10 @@
 ﻿using Carter;
 using Core.Commands;
 using Core.Exceptions;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 using Topic.CommandService.Api.Topics.Commands.CreateTopic;
 
 namespace Topic.CommandService.Api.Endpoints;
-
 public abstract class BaseEndpoint<TCommand> : ICarterModule
     where TCommand : BaseCommand
 {
@@ -29,7 +28,7 @@ public abstract class BaseEndpoint<TCommand> : ICarterModule
             await commandHandler(cmd);
 
             return Results.Ok(cmd is CreateTopicCommand
-            ? new CreateTopicResponseDto { Id = cmd.MessageId, Message = GetSuccessMessage }
+            ? new CreateTopicResponseDto { Id = cmd.Id, Message = GetSuccessMessage }
             : new ResponseDto { Message = GetSuccessMessage }
             );
         }

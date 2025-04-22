@@ -4,19 +4,22 @@ public partial class ContentAggregate
 {
     private void EnsureMessageIsValid(string message)
     {
-        if (String.IsNullOrWhiteSpace(message))
+        if (string.IsNullOrWhiteSpace(message))
         {
-            throw new InvalidOperationException($@"Значение {nameof(message)} не может быть пустым.
-                                                   Пожалуйста, укажите действительный {nameof(message)}!");
+            throw new InvalidOperationException(
+                $@"Значение {nameof(message)} не может быть пустым.
+                Пожалуйста, укажите действительный {nameof(message)}"
+            );
         }
     }
-
     private void EnsureCommentTextIsValid(string commentText)
     {
-        if (String.IsNullOrWhiteSpace(commentText))
+        if (string.IsNullOrWhiteSpace(commentText))
         {
-            throw new InvalidOperationException($@"Значение {nameof(commentText)} не может быть пустым.
-                                                   Пожалуйста, укажите действительный {nameof(commentText)}");
+            throw new InvalidOperationException(
+                $@"Значение {nameof(commentText)} не может быть пустым. 
+                Пожалуйста, укажите действительный {nameof(commentText)}"
+            );
         }
     }
 
@@ -24,23 +27,33 @@ public partial class ContentAggregate
     {
         if (!Active)
         {
-            throw new InvalidOperationException("Вы не можете выполнить это действие для неактивного сообщения");
+            throw new InvalidOperationException(
+                "Вы не можете выполнить это действие для неактивного сообщения"
+            );
         }
     }
 
-    private void EnsureUserIsAuthor(string AuthorName)
+    private void EnsureUserIsAuthor(string authorName)
     {
-        if (!author.Equals(AuthorName, StringComparison.CurrentCultureIgnoreCase))
+        if (!author.Equals(authorName,
+            StringComparison.CurrentCultureIgnoreCase))
         {
-            throw new InvalidOperationException("Вам не разрешается выполнить это действие над сообщением, сделанным другим пользователем");
+            throw new InvalidOperationException(
+                @"Вам не разрешается выполнять это действие над сообщением,
+                сделанным другим пользователем"
+            );
         }
     }
 
     private void EnsureCommentBelongsToUser(Guid commentId, string authorName)
     {
-        if (!comments[commentId].authorName.Equals(authorName, StringComparison.CurrentCultureIgnoreCase))
+        if (!comments[commentId].authorName.Equals(authorName,
+            StringComparison.CurrentCultureIgnoreCase))
         {
-            throw new InvalidOperationException("Вы не можете выполнить это действие над комментарием, сделанным другим пользователем");       
+            throw new InvalidOperationException(
+                @"Вы не можете выполнить это действие над комментарием, 
+                сделанным другим пользователем"
+            );
         }
     }
 }

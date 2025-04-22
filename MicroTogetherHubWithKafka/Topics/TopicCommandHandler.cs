@@ -13,7 +13,7 @@ public class TopicCommandHandler(IEventHandler<ContentAggregate> eventHandler)
     public async Task HandleAsync(CreateTopicCommand command, CancellationToken ct)
     {
         var aggregate = new ContentAggregate(
-            command.MessageId,
+            command.Id,
             command.AuthorName,
             command.MessageText
         );
@@ -22,21 +22,21 @@ public class TopicCommandHandler(IEventHandler<ContentAggregate> eventHandler)
 
     public async Task HandleAsync(RemoveTopicCommand command, CancellationToken ct)
     {
-        var aggregate = await eventHandler.GetAggregateByIdAsync(command.MessageId, ct);
+        var aggregate = await eventHandler.GetAggregateByIdAsync(command.Id, ct);
         aggregate.RemoveTopic(command.AuthorName);
         await eventHandler.SaveAsync(aggregate, ct);
     }
 
     public async Task HandleAsync(UpdateTopicCommand command, CancellationToken ct)
     {
-        var aggregate = await eventHandler.GetAggregateByIdAsync(command.MessageId, ct);
+        var aggregate = await eventHandler.GetAggregateByIdAsync(command.Id, ct);
         aggregate.UpdateTopic(command.MessageText);
         await eventHandler.SaveAsync(aggregate, ct);
     }
 
     public async Task HandleAsync(LikeTopicCommand command, CancellationToken ct)
     {
-        var aggregate = await eventHandler.GetAggregateByIdAsync(command.MessageId, ct);
+        var aggregate = await eventHandler.GetAggregateByIdAsync(command.Id, ct);
         aggregate.LikeTopic();
         await eventHandler.SaveAsync(aggregate, ct);
     }

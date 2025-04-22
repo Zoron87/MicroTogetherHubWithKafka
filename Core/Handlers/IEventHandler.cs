@@ -1,4 +1,4 @@
-﻿using Core.Aggregate;
+﻿using Core.Aggregates;
 
 namespace Core.Handlers;
 

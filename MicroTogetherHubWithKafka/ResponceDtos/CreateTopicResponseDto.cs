@@ -1,6 +1,6 @@
 ﻿using Core.ResponseDtos;
 
-namespace Topic.CommandService.Api.ResponceDtos;
+namespace Topic.CommandService.Api.ResponseDtos;
 
 public class CreateTopicResponseDto : BaseResponse
 {

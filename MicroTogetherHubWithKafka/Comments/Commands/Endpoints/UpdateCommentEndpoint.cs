@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Topic.CommandService.Api.Comments.Commands.UpdateComment;
 using Topic.CommandService.Api.Endpoints;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 
 namespace Topic.CommandService.Api.Comments.Commands.Endpoints;
 
@@ -18,7 +18,7 @@ public class UpdateCommentEndpoint : BaseEndpoint<UpdateCommentCommand>
             ICommandDispatcher commandDispatcher,
             ILogger<UpdateCommentEndpoint> logger) =>
         {
-            command.MessageId = topicId;
+            command.Id = topicId;
             return await ExecuteCommandAsync(command,
                 cmd => commandDispatcher.SendCommandAsync(cmd), logger);
         })

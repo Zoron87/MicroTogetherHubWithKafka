@@ -1,8 +1,7 @@
 ﻿using Core.ResponseDtos;
 
-namespace Topic.CommandService.Api.ResponceDtos;
+namespace Topic.CommandService.Api.ResponseDtos;
 
 public class ResponseDto : BaseResponse
 {
-    public Guid Id { get; set; }
 }

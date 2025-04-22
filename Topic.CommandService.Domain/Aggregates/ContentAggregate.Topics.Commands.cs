@@ -13,7 +13,7 @@ public partial class ContentAggregate
     {
         RegisterEvent(new CreateTopicEvent
         {
-            EventId = AggregateId,
+            Id = id,
             AuthorName = authorName,
             MessageText = messageText,
             CreateDate = DateTime.UtcNow
@@ -23,7 +23,7 @@ public partial class ContentAggregate
     public void Apply(CreateTopicEvent createTopicEvent)
     {
         Active = true;
-        AggregateId = createTopicEvent.EventId;
+        Id = createTopicEvent.Id;
         author = createTopicEvent.AuthorName;
     }
 
@@ -34,38 +34,37 @@ public partial class ContentAggregate
 
         RegisterEvent(new UpdateTopicEvent
         {
-            EventId = AggregateId,
+            Id = Id,
             MessageText = messageText
         });
     }
 
     public void Apply(UpdateTopicEvent updateTopicEvent)
     {
-        AggregateId = updateTopicEvent.EventId;
+        Id = updateTopicEvent.Id;
     }
 
     public void RemoveTopic(string username)
     {
         EnsureTopicIsActive();
         EnsureUserIsAuthor(username);
-        RegisterEvent(new RemoveTopicEvent { EventId = AggregateId });
+        RegisterEvent(new RemoveTopicEvent { Id = Id });
     }
 
     public void Apply(RemoveTopicEvent removeTopicEvent)
     {
-        AggregateId = removeTopicEvent.EventId;
+        Id = removeTopicEvent.Id;
         Active = false;
     }
 
     public void LikeTopic()
     {
         EnsureTopicIsActive();
-        RegisterEvent(new LikeTopicEvent { EventId = AggregateId });
+        RegisterEvent(new LikeTopicEvent { Id = Id });
     }
 
     public void Apply(LikeTopicEvent likeTopicEvent)
     {
-        AggregateId = likeTopicEvent.EventId;
-        Active = false;
+        Id = likeTopicEvent.Id;
     }
 }

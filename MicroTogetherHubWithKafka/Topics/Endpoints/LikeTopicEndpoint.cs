@@ -1,6 +1,6 @@
 ﻿using Core.MediatR;
 using Topic.CommandService.Api.Endpoints;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 using Topic.CommandService.Api.Topics.Commands.LikeTopic;
 
 namespace Topic.CommandService.Api.Topics.Endpoints;
@@ -17,7 +17,7 @@ public class LikeTopicEndpoint : BaseEndpoint<LikeTopicCommand>
             ILogger<LikeTopicEndpoint> logger) =>
         {
             return await ExecuteCommandAsync(
-                new LikeTopicCommand { MessageId = topicId },
+                new LikeTopicCommand { Id = topicId },
                 cmd => commandDispatcher.SendCommandAsync(cmd),
                 logger);
         })

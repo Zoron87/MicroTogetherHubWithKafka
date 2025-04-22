@@ -1,7 +1,7 @@
 ﻿using Core.MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Topic.CommandService.Api.Endpoints;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 using Topic.CommandService.Api.Topics.Commands.CreateTopic;
 
 namespace Topic.CommandService.Api.Topics.Endpoints;
@@ -12,14 +12,13 @@ public class CreateTopicEndpoint : BaseEndpoint<CreateTopicCommand>
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("api/topics", async (
-           [FromBody] CreateTopicCommand command,
-           ILogger<CreateTopicEndpoint> logger,
+        app.MapPost("api/topics", async ([FromBody] CreateTopicCommand command, ILogger<CreateTopicEndpoint> logger,
            ICommandDispatcher commandDispatcher) =>
         {
-            command.MessageId = Guid.NewGuid();
-            return await ExecuteCommandAsync(command,
+            command.Id = Guid.NewGuid();
+            var test = await ExecuteCommandAsync(command,
                 cmd => commandDispatcher.SendCommandAsync(cmd), logger);
+            return test;
         })
        .Produces<ResponseDto>(StatusCodes.Status201Created)
        .ProducesProblem(StatusCodes.Status400BadRequest)

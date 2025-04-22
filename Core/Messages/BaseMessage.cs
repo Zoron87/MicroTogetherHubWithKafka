@@ -1,6 +1,6 @@
 ﻿namespace Core.Messages;
 
-public abstract class BaseMessage
+public abstract class Message
 {
-    public Guid MessageId{ get; set; }
+    public Guid Id { get; set; }
 }

@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Topic.CommandService.Api.Comments.Commands.CreateComment;
 using Topic.CommandService.Api.Endpoints;
-using Topic.CommandService.Api.ResponceDtos;
+using Topic.CommandService.Api.ResponseDtos;
 
-namespace Topic.CommandService.Api.Comments.Commands.Endpoints;
+namespace Topic.CommandService.Api.Comments.Endpoints;
 
 public class CreateCommentEndpoint : BaseEndpoint<CreateCommentCommand>
 {
@@ -18,7 +18,7 @@ public class CreateCommentEndpoint : BaseEndpoint<CreateCommentCommand>
             ICommandDispatcher commandDispatcher,
             ILogger<CreateCommentEndpoint> logger) =>
         {
-            command.MessageId = topicId;
+            command.Id = topicId;
             return await ExecuteCommandAsync(command,
                 cmd => commandDispatcher.SendCommandAsync(cmd), logger);
         })

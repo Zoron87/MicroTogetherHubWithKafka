@@ -4,7 +4,7 @@ using Core.Events.Dao;
 using Core.Handlers;
 using Core.KafkaProducer;
 using Core.MediatR;
-using Core.Service;
+using Core.Services;
 using Marten;
 using Topic.CommandService.Api.Comments;
 using Topic.CommandService.Api.Comments.Commands.CreateComment;
@@ -54,7 +54,7 @@ public static class DependencyInjection
     {
         services.AddScoped<ICommandDispatcher>(provider =>
         {
-            var dispatcher = new CommandDispetcher();
+            var dispatcher = new CommandDispatcher();
 
             var commandCommentHandler = provider.GetRequiredService<ICommentCommandHandler>();
             dispatcher.RegisterHandler<CreateCommentCommand>(command =>
