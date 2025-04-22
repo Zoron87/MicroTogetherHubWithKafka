@@ -38,7 +38,7 @@ public class EventService(IEventStorage eventStorage, IEventKafkaProducer eventP
             var eventType = item.GetType().Name;
 
             var eventModel = new EventModel(
-                Id: Guid.NewGuid(),
+                Id: Guid.NewGuid().ToString(),
                 CreatedAt: DateTime.Now,
                 AggregateId: aggregateId,
                 AggregateType: nameof(ContentAggregate),
