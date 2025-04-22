@@ -14,7 +14,7 @@ public partial class ContentAggregate
 
         RegisterEvent(new CreateCommentEvent
         {
-            EventId = AggregateId,
+            MessageId = AggregateId,
             CommentId = Guid.NewGuid(),
             Text = commentText,
             AuthorName = authorName,
@@ -24,7 +24,7 @@ public partial class ContentAggregate
 
     public void Apply(CreateCommentEvent createCommentEvent)
     {
-        AggregateId = createCommentEvent.EventId;
+        AggregateId = createCommentEvent.MessageId;
         comments.Add(createCommentEvent.CommentId, (createCommentEvent.Text, createCommentEvent.AuthorName));
     }
 
@@ -46,7 +46,7 @@ public partial class ContentAggregate
 
     public void Apply(UpdateCommentEvent updateCommentEvent)
     {
-        AggregateId = updateCommentEvent.EventId;
+        AggregateId = updateCommentEvent.MessageId;
 
         comments[updateCommentEvent.CommentId] = (updateCommentEvent.Text, comments[updateCommentEvent.CommentId].authorName);
     }
@@ -57,15 +57,15 @@ public partial class ContentAggregate
         EnsureCommentBelongsToUser(commentId, username);
 
         RegisterEvent(new RemoveCommentEvent 
-        { 
-            EventId = AggregateId,
+        {
+            MessageId = AggregateId,
             CommentId = commentId
         });
     }
 
     public void Apply(RemoveCommentEvent removeCommentEvent)
     {
-        AggregateId = removeCommentEvent.EventId;
+        AggregateId = removeCommentEvent.MessageId;
         Active = false;
     }
 }

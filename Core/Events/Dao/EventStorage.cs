@@ -11,7 +11,7 @@ public class EventStorage(IDocumentSession documentSession) : IEventStorage
         return await documentSession.Query<EventModel>()
             .Where(item => item.AggregateId == id)
             .OrderBy(item => item.Version)
-            .ToListAsync();
+            .ToListAsync(ct);
     }
 
     public async Task SaveAsync(EventModel eventModel, CancellationToken ct)
