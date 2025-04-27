@@ -25,6 +25,7 @@ namespace Topic.CommandService.Api;
 
 public static class DependencyInjection
 {
+    //dan: this is temporary
     public static IServiceCollection AddCommandService(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("PgConnection")!;
