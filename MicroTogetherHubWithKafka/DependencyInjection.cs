@@ -40,6 +40,13 @@ public static class DependencyInjection
         services.RegisterCommandHandler();
 
         services.AddCarter();
+        
+        services.AddMarten(opts =>
+        {
+            opts.Connection(connectionString);
+            opts.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
+        });
+        
         return services;
     }
 

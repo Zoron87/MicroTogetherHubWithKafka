@@ -38,7 +38,7 @@ public class EventService(IEventStorage eventStorage, IEventKafkaProducer eventP
             var eventType = item.GetType().Name;
 
             var eventModel = new EventModel(
-                Id: Guid.NewGuid().ToString(),
+                Id: Guid.NewGuid(),  // В БД сменить типа поля на uuid
                 CreatedAt: DateTime.Now,
                 AggregateId: aggregateId,
                 AggregateType: nameof(ContentAggregate),

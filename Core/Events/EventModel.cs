@@ -1,7 +1,7 @@
 ﻿namespace Core.Events;
 
 public record EventModel(
-    string Id, 
+    Guid Id, 
     DateTime CreatedAt, 
     Guid AggregateId, 
     string AggregateType, 
